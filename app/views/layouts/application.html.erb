@@ -11,7 +11,7 @@
     <%= javascript_include_tag "application", "data-turbo-track": "reload", defer: true %>
   </head>
 
-  <body>
+  <body class="flex flex-col min-h-screen">
     <%= render "layouts/navbar" %>
     <% if notice %>
       <p class="alert alert-success"><%= notice %></p>

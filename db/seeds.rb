@@ -5,3 +5,14 @@
 #
 #   movies = Movie.create([{ name: "Star Wars" }, { name: "Lord of the Rings" }])
 #   Character.create(name: "Luke", movie: movies.first)
+
+100.times do
+  make = Faker::Vehicle.make
+  Car.create(make: make,
+             model: Faker::Vehicle.model(make_of_model: make),
+             year: Faker::Vehicle.year,
+             odometer: Faker::Vehicle.mileage,
+             price: Faker::Number.within(range: 1000..100_000),
+             description: Faker::Lorem.sentence(word_count: 7),
+             views: Faker::Number.within(range: 1..50))
+end
