@@ -1,0 +1,16 @@
+<section>
+  <div class="mx-auto max-w-screen-xl px-4 py-32 lg:flex lg:h-screen lg:items-center">
+    <div class="mx-auto max-w-xl text-center">
+      <h4 class="text-2xl font-extrabold text-red-700 sm:block">
+        best place to find best car
+      </h4>
+      <p class="mt-4 sm:text-xl sm:leading-relaxed">
+        View the list of cars or find a car according to your preferences. You can register to view your search history.
+      </p>
+      <div class="mt-8 flex flex-wrap justify-center gap-4">
+      <%= link_to "Cars list", cars_path, class: "block w-full rounded bg-red-600 px-12 py-3 text-sm font-medium text-white shadow hover:bg-red-700 focus:outline-none focus:ring active:bg-red-500 sm:w-auto" %>
+      <%= link_to "Back to home", root_path, class: "block w-full rounded px-12 py-3 text-sm font-medium text-red-600 shadow hover:bg-red-700 hover:text-white focus:outline-none focus:ring active:text-red-500 sm:w-auto" %>
+      </div>
+    </div>
+  </div>
+</section>
