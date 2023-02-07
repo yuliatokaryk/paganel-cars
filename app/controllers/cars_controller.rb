@@ -1,10 +1,11 @@
 class CarsController < ApplicationController
-  before_action :authenticate_user!, except: [:index, :show]
+  # before_action :authenticate_user!, except: [:index, :show]
   before_action :set_car, only: [:show, :edit, :update, :destroy]
   before_action :authorize_access, only: [:edit, :update, :destroy]
 
   def index
     @cars = Car.all
+    @cars = CarsManager::Sorter.new(@cars, params['sort_by'] || 'created_at', params['sort_direction'] || 'desc').call
   end
 
   def show
