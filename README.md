@@ -1,24 +1,40 @@
-# README
+## Requirements
+Create an web application with car advertisements. A user with "admin" status can add, edit or delete advertisements. The Admin can also view application statistics. Users can view a list of all cars, sort them by price or date of addition (asc or desc). Users can also find cars based on specified criteria. Users can register to view their search history.
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+## Description
+Task is implemented on **Ruby 3.2.0**
 
-Things you may want to cover:
+**Ruby on Rails 7.0.4.2**
 
-* Ruby version
+Language: English
 
-* System dependencies
+Used gem for authorization and authentication: **Devise**, **Pundit**
 
-* Configuration
+Load configuration variables into ENV in development: gem **Dotenv**
 
-* Database creation
+Database: **PostgreSQL*
 
-* Database initialization
+### To Start
+1. Clone this repository
+```
+git clone git@github.com:yuliatokaryk/paganel-cars.git
+```
+2. Create ".env" file, copy data from ".env.example" and paste it to ".env". Add ".env" to ".gitignore"
 
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+3. Install all necessary gems
+```
+bundle
+```
+4. Create database and migrations
+```
+rails db:create
+rails db:migrate
+```
+5. Seed database
+```
+rails db:seed
+```
+6. Run app on localhost
+```
+bin/dev
+```
