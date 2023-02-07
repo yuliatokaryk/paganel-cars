@@ -73,3 +73,5 @@ gem "devise", "~> 4.8"
 gem "faker", "~> 3.1"
 
 gem "image_processing", "~> 1.12"
+
+gem "pundit", "~> 2.3"
