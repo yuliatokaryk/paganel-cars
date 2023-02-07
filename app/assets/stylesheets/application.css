@@ -14,6 +14,10 @@
  *= require_self
  */
 
+.banner {
+  background-image: url("home-banner.jpg");
+  }
+
 .digg_pagination {
   background: white;
   cursor: default;
