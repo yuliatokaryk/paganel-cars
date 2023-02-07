@@ -1,4 +1,4 @@
-lock '~> 3.17.0'
+lock '~> 3.17.1'
 
 set :application, 'cars'
 set :repo_url, 'git@github.com:yuliatokaryk/paganel-cars.git'
