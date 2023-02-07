@@ -9,6 +9,7 @@ class CarsController < ApplicationController
   end
 
   def show
+    CarsManager::ViewsCounter.new(@car).call
   end
 
   def new
