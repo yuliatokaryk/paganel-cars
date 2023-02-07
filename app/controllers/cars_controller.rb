@@ -1,5 +1,7 @@
 class CarsController < ApplicationController
+  before_action :authenticate_user!, except: [:index, :show]
   before_action :set_car, only: [:show, :edit, :update, :destroy]
+  before_action :authorize_access, only: [:edit, :update, :destroy]
 
   def index
     @cars = Car.all
@@ -9,14 +11,14 @@ class CarsController < ApplicationController
   end
 
   def new
-    @car = Car.new
+    @car = authorize Car.new
   end
 
   def edit
   end
 
   def create
-    @car = Car.new(car_params)
+    @car = authorize Car.new(car_params)
     @car.views = 0
 
     if @car.save
