@@ -1,1 +1,1 @@
-server '194.99.21.57', user: 'deploy', roles: %w[app db web]
+server '89.43.33.250', user: 'deploy', roles: %w[app db web]
