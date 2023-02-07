@@ -61,3 +61,18 @@
     background: #c96a6a;
     padding: 0.1em 0.25em; }
 
+@media only screen and (max-width: 800px) {
+  .banner {
+    background-image: url("red-car.jpg");
+    }
+
+  .banner-text {
+    display: none;
+  }
+}
+
+@media only screen and (max-width: 1024px) { 
+  .banner-text {
+    margin-left: 100px ;
+  }
+}
