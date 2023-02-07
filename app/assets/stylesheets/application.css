@@ -13,3 +13,47 @@
  *= require_tree .
  *= require_self
  */
+
+.digg_pagination {
+  background: white;
+  cursor: default;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  /* self-clearing method: */ }
+.digg_pagination a, .digg_pagination span, .digg_pagination em {
+    padding: 0.2em 0.5em;
+    display: block;
+    float: left;
+    margin-right: 1px; }
+.digg_pagination .disabled {
+  border-radius: 4px;
+  color: #b91c1c;
+  border: 1px solid #dddddd; }
+.digg_pagination .current {
+  font-style: normal;
+  font-weight: bold;
+  background: #b91c1c;
+  color: white;
+  border: 1px solid #b91c1c; }
+.digg_pagination a {
+  text-decoration: none;
+  color: white;
+  background-color: #b91c1c;
+  border: 1px solid #c96a6a;
+  border-radius: 4px; }
+  .digg_pagination a:hover, .digg_pagination a:focus {
+    background-color: #991b1b; }
+.digg_pagination .page_info {
+  border-radius: 4px;
+  background: #b91c1c;
+  color: white;
+  padding: 0.4em 0.6em;
+  width: 22em;
+  margin: 0 auto 0.3em;
+  text-align: center; }
+  .digg_pagination .page_info b {
+    color: #000033;
+    background: #c96a6a;
+    padding: 0.1em 0.25em; }
+

@@ -4,7 +4,7 @@ class CarsController < ApplicationController
   before_action :authorize_access, only: [:edit, :update, :destroy]
 
   def index
-    @cars = Car.all
+    @cars = Car.paginate(page: params[:page])
     @cars = CarsManager::Sorter.new(@cars, params['sort_by'] || 'created_at', params['sort_direction'] || 'desc').call
   end
 
