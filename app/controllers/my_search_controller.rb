@@ -15,6 +15,8 @@ class MySearchController < ApplicationController
   private
 
   def authorize_access
+    redirect_to root_path if current_user.admin?
+
     @searches ||= policy_scope(MySearch)
   end
 end
