@@ -1,19 +1,25 @@
+<h1 class='text-center my-5 text-4xl'>Paganel Cars</h1>
+
+<% if @search_rules %>
+  <%= render "params_table" %>
+<% end %>
+
 <% if @cars.any? %>
-  <h1 class='text-center my-5 text-4xl'>Paganel Cars</h1>
   <%= render "sort_form" %>
   <%= render @cars %>
 
-<div class="my-5 mx-auto w-full max-w-sm md:max-w-xl lg:max-w-2xl">
-  <div class="digg_pagination">
-    <div class="page_info">
-      <%= page_entries_info @cars %>
+  <div class="my-5 mx-auto w-full max-w-sm md:max-w-xl lg:max-w-2xl">
+    <div class="digg_pagination">
+      <div class="page_info">
+        <%= page_entries_info @cars %>
+      </div>
+      <div>
+      <%= will_paginate @cars, :container => false, :page_links => false, class: "pages"  %>
     </div>
-    <div>
-    <%= will_paginate @cars, :container => false, :page_links => false, class: "pages"  %>
+    </div>
   </div>
-  </div>
-</div>
-
+<% elsif @search_rules %>
+  <h3 class='text-center my-5 text-2xl'>No car found according to your parameters.</h3>
 <% else %>
-  <h1 class='text-center my-5 text-4xl'>No cars have been added yet.</h1>
+  <h3 class='text-center my-5 text-2xl'>No cars have been added yet.</h3>
 <% end %>
