@@ -56,7 +56,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_02_08_104857) do
   end
 
   create_table "my_searches", force: :cascade do |t|
-    t.hstore "search_rules"
+    t.jsonb "search_rules"
     t.date "date"
     t.bigint "user_id"
     t.datetime "created_at", null: false
