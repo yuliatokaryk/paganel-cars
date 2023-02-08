@@ -1,6 +1,6 @@
 <h1 class='text-center my-5 text-4xl'>Paganel Cars</h1>
 
-<% if @search_params %>
+<% if search_params %>
   <%= render "params_table" %>
 <% end %>
 
@@ -18,7 +18,7 @@
     </div>
     </div>
   </div>
-<% elsif @search_rules %>
+<% elsif search_params %>
   <h3 class='text-center my-5 text-2xl'>No car found according to your parameters.</h3>
 <% else %>
   <h3 class='text-center my-5 text-2xl'>No cars have been added yet.</h3>
