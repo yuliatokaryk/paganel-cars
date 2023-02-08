@@ -19,7 +19,7 @@ Database: **PostgreSQL*
 ```
 git clone git@github.com:yuliatokaryk/paganel-cars.git
 ```
-2. Create ".env" file, copy data from ".env.example" and paste it to ".env". Add ".env" to ".gitignore"
+2. Create ".env" file, copy data from ".env.example" and paste it to ".env".
 
 3. Install all necessary gems
 ```
