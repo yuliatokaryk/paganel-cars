@@ -4,7 +4,9 @@ class CarsController < ApplicationController
   before_action :authorize_access, only: [:edit, :update, :destroy]
 
   def index
-    @cars = Car.paginate(page: params[:page])
+    @cars = Car.paginate(page: params[:page])    
+    @cars = CarsManager::Searcher.new(cars: @cars, params: search_params).call if search_params
+
     @cars = CarsManager::Sorter.new(@cars, params['sort_by'] || 'created_at', params['sort_direction'] || 'desc').call
   end
 
@@ -57,7 +59,9 @@ class CarsController < ApplicationController
     authorize @car
   end
 
-  def filter_params
-    params[:filter]&.select { |k, v| v.strip != '' }
+  def search_params
+    @search_params ||= params[:search_rules]&.select { |k, v| v.strip != '' }
   end
+
+  helper_method :search_params
 end
