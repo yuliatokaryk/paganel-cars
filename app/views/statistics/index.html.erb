@@ -1,0 +1,78 @@
+<h1 class='text-center my-5 text-4xl'>Statistics</h1>
+
+<% unless @statistics.empty? %>
+  <div class="w-9/12 mx-auto">
+    <%= link_to "Clear statistics", destroy_statistics_path, data: { turbo_method: :delete, turbo_confirm: "Are you sure?" }, class: "w-42 my-14 inline-flex items-center px-3 py-2 text-sm font-medium text-center text-white bg-red-700 rounded-lg hover:bg-red-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800" %>
+    <div class="relative overflow-x-auto shadow-md sm:rounded-lg">
+      <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
+        <thead class="text-xs text-gray-700 uppercase dark:text-gray-400">
+          <tr>
+            <th scope="col" class="px-6 py-3 bg-gray-50">
+              Make
+            </th>
+            <th scope="col" class="px-6 py-3 bg-purple-50">
+              Model
+            </th>
+            <th scope="col" class="px-6 py-3 bg-gray-50">
+              Year from
+            </th>
+            <th scope="col" class="px-6 py-3 bg-purple-50">
+              Year to
+            </th>
+            <th scope="col" class="px-6 py-3 bg-gray-50">
+              Price from
+            </th>
+            <th scope="col" class="px-6 py-3 bg-purple-50">
+              Price to
+            </th>
+            <th scope="col" class="px-6 py-3 bg-blue-50">
+              Requests quantity:
+            </th>
+            <th scope="col" class="px-6 py-3 bg-green-50">
+              Total quantity:
+            </th>
+          </tr>
+        </thead>
+        <tbody>
+        <% @statistics.each do |statistic| %>
+          <tr class="border-b border-gray-300">
+            <td class="px-6 py-3 bg-gray-100">
+              <%= statistic.search_rules['make'] %>
+            </td>
+            <td class="px-6 py-3 bg-purple-100">
+              <%= statistic.search_rules['model'] %>
+            </td>
+            <td class="px-6 py-3 bg-gray-100">
+              <%= statistic.search_rules['year_from'] %>
+            </td>
+            <td class="px-6 py-3 bg-purple-100">
+              <%= statistic.search_rules['year_to'] %>
+            </td>
+            <td class="px-6 py-3 bg-gray-100">
+              <%= statistic.search_rules['price_from'] %>
+            </td>
+            <td class="px-6 py-3 bg-purple-100">
+              <%= statistic.search_rules['price_to'] %>
+            </td>
+            <td class="px-6 py-3 bg-blue-100">
+              <%= statistic.requests_quantity %>
+            </td>
+            <td class="px-6 py-3 bg-green-100">
+              <%= statistic.total_quantity %>
+            </td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+<% else %>
+  <h3 class='text-center my-5 text-2xl'>Statistics are empty.</h3>
+<% end %>
+
+<div class="my-5 mx-auto w-full max-w-sm md:max-w-xl lg:max-w-2xl">
+  <div class="digg_pagination">
+    <div>
+      <%= will_paginate @statistics, :container => false, :page_links => false, class: "pages" %>
+    </div>
+  </div>
+</div>

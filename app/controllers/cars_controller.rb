@@ -10,6 +10,7 @@ class CarsController < ApplicationController
     if search_params
       @cars = CarsManager::Searcher.new(cars: @cars, params: search_params).call
       save_history
+      add_statistic
     end
 
     @cars = CarsManager::Sorter.new(@cars, params['sort_by'] || 'created_at', params['sort_direction'] || 'desc').call
@@ -72,6 +73,10 @@ class CarsController < ApplicationController
     return if current_user.admin?
 
     SearchHistory::Manager.new(params: search_params || {}, user: current_user[:id]).call
+  end
+
+  def add_statistic
+    Statistics::Manager.new(total_quantity: @cars.count, params: search_params).call
   end
 
   helper_method :search_params
