@@ -10,7 +10,7 @@ module SearchHistory
 
     def call
       request_date = Date.today
-      
+
       MySearch.create(search_rules: @params, date: request_date, user_id: @user)
       MySearch.where(user_id: @user).first.delete if MySearch.where(user_id: @user).count > 50
     end

@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class MySearchPolicy < ApplicationPolicy
   class Scope < Scope
     def resolve

@@ -1,9 +1,9 @@
 # frozen_string_literal: true
 
 class CarsController < ApplicationController
-  before_action :authenticate_user!, except: [:index, :show]
-  before_action :set_car, only: [:show, :edit, :update, :destroy]
-  before_action :authorize_access, only: [:edit, :update, :destroy]
+  before_action :authenticate_user!, except: %i[index show]
+  before_action :set_car, only: %i[show edit update destroy]
+  before_action :authorize_access, only: %i[edit update destroy]
 
   def index
     @cars = Car.paginate(page: params[:page])
@@ -25,8 +25,7 @@ class CarsController < ApplicationController
     @car = authorize Car.new
   end
 
-  def edit
-  end
+  def edit; end
 
   def create
     @car = authorize Car.new(car_params)
@@ -67,7 +66,7 @@ class CarsController < ApplicationController
   end
 
   def search_params
-    @search_params ||= params[:search_rules]&.select { |k, v| v.strip != '' }
+    @search_params ||= params[:search_rules]&.select { |_k, v| v.strip != '' }
   end
 
   helper_method :search_params
