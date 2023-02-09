@@ -5,7 +5,7 @@ class MySearchController < ApplicationController
   before_action :authorize_access
 
   def index
-    @searches = @searches.paginate(page: params[:page], per_page: 10)
+    @searches = policy_scope(MySearch).paginate(page: params[:page], per_page: 10)
   end
 
   def destroy_all
@@ -18,7 +18,5 @@ class MySearchController < ApplicationController
 
   def authorize_access
     redirect_to root_path if current_user.admin?
-
-    @searches ||= policy_scope(MySearch)
   end
 end
