@@ -6,9 +6,19 @@ require:
 AllCops:
   TargetRubyVersion: 3.0
   NewCops: enable
+  Exclude:
+    - 'config/puma.rb'
+    - 'db/schema.rb'
+    - 'config/initializers/devise.rb'
+    - 'db/migrate/20230206142737_create_active_storage_tables.active_storage.rb'
+    - 'config/environments/production.rb'
+    - 'app/controllers/application_controller.rb'
+    - 'bin/**/*'
+
 
 Lint/MissingSuper:
   Enabled: false
+
 
 # Style -----------------------------------------------------------------------
 

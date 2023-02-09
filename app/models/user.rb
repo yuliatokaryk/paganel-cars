@@ -8,5 +8,5 @@ class User < ApplicationRecord
 
   enum :status, { user: 0, admin: 1 }
 
-  has_many :my_searches
+  has_many :my_searches, dependent: :destroy
 end
