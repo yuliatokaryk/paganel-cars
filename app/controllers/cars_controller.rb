@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class CarsController < ApplicationController
   before_action :authenticate_user!, except: [:index, :show]
   before_action :set_car, only: [:show, :edit, :update, :destroy]

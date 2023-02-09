@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class CarPolicy < ApplicationPolicy
   def initialize(user, _record)
     @user = user

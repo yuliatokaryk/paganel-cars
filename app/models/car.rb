@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class Car < ApplicationRecord
   has_one_attached :picture
 
