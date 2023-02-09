@@ -15,4 +15,6 @@ Rails.application.routes.draw do
   get 'search', to: 'search#index'
   get 'my_search', to: 'my_search#index'
   delete 'destroy/my_search', to: 'my_search#destroy_all'
+  get 'statistics', to: 'statistics#index'
+  delete 'destroy/statistics', to: 'statistics#destroy_all'
 end
