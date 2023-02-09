@@ -1,20 +1,18 @@
 class CarsController < ApplicationController
-  # before_action :authenticate_user!, except: [:index, :show]
+  before_action :authenticate_user!, except: [:index, :show]
   before_action :set_car, only: [:show, :edit, :update, :destroy]
   before_action :authorize_access, only: [:edit, :update, :destroy]
 
   def index
     @cars = Car.paginate(page: params[:page])
-
-    if search_params
-      @cars = CarsManager::Searcher.new(cars: @cars, params: search_params).call
-
-      return unless current_user
-      return if current_user.admin?
-
-      SearchHistory::Manager.new(params: search_params || {}, user: current_user[:id]).call 
-    end
+    @cars = CarsManager::Searcher.new(cars: @cars, params: search_params).call if search_params
     @cars = CarsManager::Sorter.new(@cars, params['sort_by'] || 'created_at', params['sort_direction'] || 'desc').call
+
+    return unless search_params
+    return unless user_signed_in?
+    return if current_user.admin?
+
+    SearchHistory::Manager.new(params: search_params || {}, user: current_user[:id]).call
   end
 
   def show
