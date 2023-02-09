@@ -32,6 +32,7 @@ group :development, :test do
   gem 'debug', platforms: %i[mri mingw x64_mingw]
   gem 'fasterer', '~> 0.10.0'
   gem 'pry-rails', '~> 0.3.9'
+  gem 'rspec-rails', '~> 6.0'
   gem 'rubocop', '~> 1.45'
   gem 'rubocop-performance', '~> 1.16'
   gem 'rubocop-rails', '~> 2.17'
