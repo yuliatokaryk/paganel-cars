@@ -1,18 +1,18 @@
+# frozen_string_literal: true
+
 class CarsController < ApplicationController
-  before_action :authenticate_user!, except: [:index, :show]
-  before_action :set_car, only: [:show, :edit, :update, :destroy]
-  before_action :authorize_access, only: [:edit, :update, :destroy]
+  before_action :authenticate_user!, except: %i[index show]
+  before_action :set_car, only: %i[show edit update destroy]
+  before_action :authorize_access, only: %i[edit update destroy]
 
   def index
     @cars = Car.paginate(page: params[:page])
-    @cars = CarsManager::Searcher.new(cars: @cars, params: search_params).call if search_params
+    if search_params
+      @cars = CarsManager::Searcher.new(cars: @cars, params: search_params).call
+      save_history
+    end
+
     @cars = CarsManager::Sorter.new(@cars, params['sort_by'] || 'created_at', params['sort_direction'] || 'desc').call
-
-    return unless search_params
-    return unless user_signed_in?
-    return if current_user.admin?
-
-    SearchHistory::Manager.new(params: search_params || {}, user: current_user[:id]).call
   end
 
   def show
@@ -23,8 +23,7 @@ class CarsController < ApplicationController
     @car = authorize Car.new
   end
 
-  def edit
-  end
+  def edit; end
 
   def create
     @car = authorize Car.new(car_params)
@@ -65,7 +64,14 @@ class CarsController < ApplicationController
   end
 
   def search_params
-    @search_params ||= params[:search_rules]&.select { |k, v| v.strip != '' }
+    @search_params ||= params[:search_rules]&.select { |_k, v| v.strip != '' }
+  end
+
+  def save_history
+    return unless user_signed_in?
+    return if current_user.admin?
+
+    SearchHistory::Manager.new(params: search_params || {}, user: current_user[:id]).call
   end
 
   helper_method :search_params

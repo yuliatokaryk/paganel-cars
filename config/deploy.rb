@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 lock '~> 3.17.1'
 
 set :application, 'cars'
