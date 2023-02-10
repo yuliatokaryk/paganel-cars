@@ -3,23 +3,35 @@
 require 'rails_helper'
 
 RSpec.describe User do
+  let(:user) { build(:user) }
+
   it 'is valid with valid attributes' do
-    user = described_class.new(email: 'user@gmail.com', password: '123123', password_confirmation: '123123')
     expect(user).to be_valid
   end
 
   it 'is not valid without email' do
-    user = described_class.new(password: '123123', password_confirmation: '123123')
+    user.email = nil
     expect(user).not_to be_valid
   end
 
   it 'is not valid without password' do
-    user = described_class.new(email: 'user@gmail.com')
+    user.password = nil
     expect(user).not_to be_valid
   end
 
   it 'is not valid with different password and password confirmation' do
-    user = described_class.new(email: 'user@gmail.com', password: '111111', password_confirmation: '222222')
+    user.password_confirmation = '123456'
     expect(user).not_to be_valid
+  end
+
+  describe '#create' do
+    it 'set user status by default' do
+      expect(user.status).to eq('user')
+    end
+  end
+
+  it 'set admit status' do
+    user.admin!
+    expect(user.status).to eq('admin')
   end
 end
