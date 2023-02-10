@@ -3,33 +3,68 @@
 require 'rails_helper'
 
 RSpec.describe Car do
+  let(:car) { build(:car) }
+
   it 'is valid with valid attributes' do
-    car = described_class.new(make: 'BMW', model: 'X5', year: '2010', odometer: '250000', price: '12000')
     expect(car).to be_valid
   end
 
   it 'is not valid without a make' do
-    car = described_class.new(model: 'X5', year: '2010', odometer: '250000', price: '12000')
+    car.make = nil
     expect(car).not_to be_valid
   end
 
   it 'is not valid without a model' do
-    car = described_class.new(make: 'BMW', year: '2010', odometer: '250000', price: '12000')
+    car.model = nil
     expect(car).not_to be_valid
   end
 
   it 'is not valid without a year' do
-    car = described_class.new(make: 'BMW', model: 'X5', odometer: '250000', price: '12000')
+    car.year = nil
     expect(car).not_to be_valid
   end
 
   it 'is not valid without a odometer' do
-    car = described_class.new(make: 'BMW', model: 'X5', year: '2010', price: '12000')
+    car.odometer = nil
     expect(car).not_to be_valid
   end
 
   it 'is not valid without a price' do
-    car = described_class.new(make: 'BMW', model: 'X5', year: '2010', odometer: '250000')
+    car.price = nil
     expect(car).not_to be_valid
+  end
+
+  describe '#create' do
+    let(:car) { create(:car) }
+
+    it 'is not valid without a valid make' do
+      car.make = Faker::Alphanumeric.alpha(number: 51)
+      expect(car).not_to be_valid
+    end
+
+    it 'is not valid without a valid model' do
+      car.model = Faker::Alphanumeric.alpha(number: 51)
+      expect(car).not_to be_valid
+    end
+
+    it 'is not valid with a year greater than 2023' do
+      car.year = 2025
+      expect(car).not_to be_valid
+    end
+
+    it 'is not valid with a year less than 1990' do
+      car.year = 1989
+      expect(car).not_to be_valid
+    end
+
+    it 'is not valid with a negative odometer' do
+      car.odometer = -5
+      expect(car).not_to be_valid
+    end
+
+    it 'is not valid with a price less than 0' do
+      car.price = -5
+      expect(car).not_to be_valid
+    end
   end
 end
