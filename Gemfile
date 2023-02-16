@@ -33,6 +33,7 @@ group :development, :test do
   gem 'factory_bot_rails', '~> 6.2'
   gem 'fasterer', '~> 0.10.0'
   gem 'pry-rails', '~> 0.3.9'
+  gem 'rails-controller-testing', '~> 1.0'
   gem 'rspec-rails', '~> 6.0'
   gem 'rubocop', '~> 1.45'
   gem 'rubocop-performance', '~> 1.16'
