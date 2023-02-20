@@ -6,4 +6,8 @@ FactoryBot.define do
     password { Faker::Internet.password }
     password_confirmation { password }
   end
+
+  trait :admin do
+    status { 1 }
+  end
 end
