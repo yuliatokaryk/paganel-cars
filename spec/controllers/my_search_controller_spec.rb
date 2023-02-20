@@ -6,23 +6,32 @@ RSpec.describe MySearchController do
   let(:user) { create(:user) }
 
   describe 'GET index' do
-    it 'renders the index template' do
-      sign_in user
+    context 'when there is user' do
+      it 'renders the index template' do
+        sign_in user
 
-      get :index
-      expect(response).to render_template('index')
+        get :index
+        expect(response).to render_template('index')
+      end
+
+      it 'has a 200 status code' do
+        sign_in user
+
+        get :index
+        expect(response).to have_http_status(:ok)
+      end
     end
 
-    it 'has a 200 status code' do
-      sign_in user
+    context 'when there is no user' do
+      it 'redirects to sign_in page' do
+        get :index
+        expect(response).to redirect_to('/users/sign_in')
+      end
 
-      get :index
-      expect(response).to have_http_status(:ok)
-    end
-
-    it 'returns user/sign_in page unless user' do
-      get :index
-      expect(response).to redirect_to('/users/sign_in')
+      it 'has a 302 status code' do
+        get :index
+        expect(response).to have_http_status(:found)
+      end
     end
   end
 
