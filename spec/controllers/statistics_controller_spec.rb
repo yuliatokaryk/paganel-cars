@@ -24,7 +24,7 @@ RSpec.describe StatisticsController do
     end
 
     context 'when user is not an admin' do
-      it 'redirect to the root template' do
+      it 'redirects to the root template' do
         sign_in user
 
         get :index
