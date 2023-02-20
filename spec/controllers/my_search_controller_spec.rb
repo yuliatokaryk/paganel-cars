@@ -19,12 +19,21 @@ RSpec.describe MySearchController do
       get :index
       expect(response).to have_http_status(:ok)
     end
+
+    it 'returns user/sign_in page unless user' do
+      get :index
+      expect(response).to redirect_to('/users/sign_in')
+    end
   end
 
   describe 'DELETE destroy_all' do
+    let(:my_search) { create(:my_search, user: user) }
+
     it "deletes all user's searches" do
+      sign_in user
+
       delete :destroy_all
-      expect(MySearch.count).to be(0)
+      expect(MySearch.where(user: user).count).to be(0)
     end
   end
 end
