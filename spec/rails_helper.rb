@@ -64,6 +64,19 @@ RSpec.configure do |config|
   # config.filter_gems_from_backtrace("gem name")
 
   config.include Devise::Test::ControllerHelpers, type: :controller
+
+  config.before(:suite) do
+    # Skip DatabaseCleaner's safeguard in order to be able to connect to a database using an URL:
+    DatabaseCleaner.allow_remote_database_url = true
+    DatabaseCleaner.clean_with(:deletion)
+    DatabaseCleaner.strategy = :transaction
+  end
+  config.before(:each) do
+    DatabaseCleaner.start
+  end
+  config.after(:each) do
+    DatabaseCleaner.clean
+  end
 end
 
 Shoulda::Matchers.configure do |config|

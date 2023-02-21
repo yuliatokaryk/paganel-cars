@@ -29,6 +29,7 @@ gem 'tzinfo-data', platforms: %i[mingw mswin x64_mingw jruby]
 gem 'will_paginate', '~> 3.3'
 
 group :development, :test do
+  gem 'database_cleaner-active_record', '~> 2.0'
   gem 'debug', platforms: %i[mri mingw x64_mingw]
   gem 'factory_bot_rails', '~> 6.2'
   gem 'fasterer', '~> 0.10.0'
@@ -39,6 +40,7 @@ group :development, :test do
   gem 'rubocop-performance', '~> 1.16'
   gem 'rubocop-rails', '~> 2.17'
   gem 'rubocop-rspec', '~> 2.18'
+  gem 'shoulda-context', '~> 2.0'
   gem 'simplecov', '~> 0.22.0'
 end
 
