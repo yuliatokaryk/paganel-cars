@@ -9,8 +9,12 @@ RSpec.describe MySearch do
     expect(my_search).to be_valid
   end
 
-  it 'is not valid without user' do
+  it 'is invalid without user' do
     my_search.user_id = nil
     expect(my_search).not_to be_valid
+  end
+
+  describe 'associations' do
+    it { is_expected.to belong_to(:user) }
   end
 end
