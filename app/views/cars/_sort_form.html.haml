@@ -1,0 +1,14 @@
+= form_with url: cars_path, method: :get, data: { turbo: false }, :html => {:class => 'my-5 mx-auto w-full max-w-sm md:max-w-xl lg:max-w-2xl'} do |f|
+  - params.fetch(:search_rules, {}).each do |k, v|
+    = hidden_field_tag "search_rules[#{k}]", v
+  .mb-5
+    .mb-2
+      %h3.text-2xl.text-red-700 Sort cars list:
+    %div
+      = f.radio_button :sort_by, :price
+      = f.label 'By price'
+    %div
+      = f.radio_button :sort_by, :created_at
+      = f.label 'By date'
+  = f.select :sort_direction, [:asc, :desc]
+  = f.submit "Sort", class: "text-white bg-red-700 hover:bg-red-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center"
