@@ -6,7 +6,7 @@ class StatisticPolicy < ApplicationPolicy
   end
 
   def index?
-    true if @user.admin?
+    true if @user.try(:admin?)
   end
 
   def destroy_all?
