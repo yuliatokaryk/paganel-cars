@@ -1,0 +1,34 @@
+.my-5.mx-auto.w-full.max-w-sm.md:max-w-xl.lg:max-w-2xl
+  %p.font-bold Your search paramethers:
+  .relative.overflow-x-auto
+    %table.w-full.text-sm.text-left.text-gray-500.dark:text-gray-400.mb-5
+      %thead.text-xs.text-gray-900.uppercase.dark:text-gray-400
+        %tr
+          %th.py-3{:scope => "col"}
+            Make
+          %th.py-3{:scope => "col"}
+            Model
+          %th.py-3{:scope => "col"}
+            Year from
+          %th.py-3{:scope => "col"}
+            Year to
+          %th.py-3{:scope => "col"}
+            Price from
+          %th.py-3{:scope => "col"}
+            Price to
+      %tbody
+        %tr.bg-white.dark:bg-gray-800
+          %th.py-4{:scope => "row"}
+            = search_params["make"]
+          %td.py-4
+            = search_params["model"]
+          %td.py-4
+            = search_params["year_from"]
+          %td.py-4
+            = search_params["year_to"]
+          %td.py-4
+            = search_params["price_from"]
+          %td.py-4
+            = search_params["price_to"]
+  = link_to "Change search params", search_path, class: "text-white bg-red-700 hover:bg-red-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center"
+  = link_to "Reset", cars_path, class: "text-white bg-red-700 hover:bg-red-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center"

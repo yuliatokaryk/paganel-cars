@@ -1,0 +1,35 @@
+= form_with(model: @car, data: {turbo: false}, :html => {:class => 'w-full max-w-3xl mx-auto bg-gray-100 p-5'}) do |f|
+  - if @car.errors.any?
+    .text-red-500
+      %h3
+        = pluralize(@car.errors.count, "error")
+        prohibited this car from being saved:
+      %ul.pl-4.list-disc
+        - @car.errors.each do |error|
+          %li= error.full_message
+  .flex.flex-wrap.-mx-3.mb-6
+    .w-full.px-3.mb-6.md:mb-0{:class => "md:w-1/2"}
+      = f.label :make, class: "block uppercase tracking-wide text-red-700 text-xs font-bold mb-2"
+      = f.text_field :make, class: "appearance-none block w-full text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
+    .w-full.px-3.mb-6.md:mb-0{:class => "md:w-1/2"}
+      = f.label :model, class: "block uppercase tracking-wide text-red-700 text-xs font-bold mb-2"
+      = f.text_field :model, class: "appearance-none block w-full text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
+  .flex.flex-wrap.-mx-3.mb-6
+    .w-full.px-3.mb-6.md:mb-0{:class => "md:w-1/3"}
+      = f.label :year, class: "block uppercase tracking-wide text-red-700 text-xs font-bold mb-2"
+      = f.number_field :year, class:"appearance-none block w-full text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
+    .w-full.px-3.mb-6.md:mb-0{:class => "md:w-1/3"}
+      = f.label :odometer, class: "block uppercase tracking-wide text-red-700 text-xs font-bold mb-2"
+      = f.number_field :odometer, class:"appearance-none block w-full text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
+    .w-full.px-3.mb-6.md:mb-0{:class => "md:w-1/3"}
+      = f.label :price, class: "block uppercase tracking-wide text-red-700 text-xs font-bold mb-2"
+      = f.number_field :price, class:"appearance-none block w-full text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
+  .flex.flex-wrap.-mx-3.mb-6
+    .w-full.px-3.mb-6.md:mb-0
+      = f.label :description, class: "block uppercase tracking-wide text-red-700 text-xs font-bold mb-2"
+      = f.text_field :description, class:"appearance-none block w-full text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
+  .flex.flex-wrap.-mx-3.mb-6
+    .w-full.px-3.mb-6.md:mb-0
+      = f.label :picture, class: "block uppercase tracking-wide text-red-700 text-xs font-bold mb-2"
+      = f.file_field :picture
+  = f.submit :submit, class:"bg-red-700 py-4 px-6 text-white font-bold uppercase text-xs rounded hover:bg-red-200 hover:text-gray-800"

@@ -1,0 +1,45 @@
+%h1.text-center.my-5.text-4xl My search history
+- unless @searches.empty?
+  .mx-auto{:class => "w-9/12"}
+    = link_to "Clear search history", destroy_my_search_path, data: { turbo_method: :delete, turbo_confirm: "Are you sure?" }, class: "w-42 my-14 inline-flex items-center px-3 py-2 text-sm font-medium text-center text-white bg-red-700 rounded-lg hover:bg-red-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+    .relative.overflow-x-auto.shadow-md.sm:rounded-lg
+      %table.w-full.text-sm.text-left.text-gray-500.dark:text-gray-400
+        %thead.text-xs.text-gray-700.uppercase.dark:text-gray-400
+          %tr
+            %th.px-6.py-3.bg-gray-50.dark:bg-gray-800{:scope => "col"}
+              Date
+            %th.px-6.py-3.bg-gray-50.dark:bg-gray-800{:scope => "col"}
+              Make
+            %th.px-6.py-3.bg-gray-50.dark:bg-gray-800{:scope => "col"}
+              Model
+            %th.px-6.py-3.bg-gray-50.dark:bg-gray-800{:scope => "col"}
+              Year from
+            %th.px-6.py-3.bg-gray-50.dark:bg-gray-800{:scope => "col"}
+              Year to
+            %th.px-6.py-3.bg-gray-50.dark:bg-gray-800{:scope => "col"}
+              Price from
+            %th.px-6.py-3.bg-gray-50.dark:bg-gray-800{:scope => "col"}
+              Price to
+        %tbody
+          - @searches.each do |search|
+            %tr.border-b.border-gray-200.dark:border-gray-700
+              %th.px-6.py-4.font-medium.text-gray-900.whitespace-nowrap.bg-gray-50.dark:text-white.dark:bg-gray-800{:scope => "row"}
+                = search.date
+              %td.px-6.py-3.bg-gray-100
+                = search.search_rules['make']
+              %td.px-6.py-3.bg-gray-100
+                = search.search_rules['model']
+              %td.px-6.py-3.bg-gray-100
+                = search.search_rules['year_from']
+              %td.px-6.py-3.bg-gray-100
+                = search.search_rules['year_to']
+              %td.px-6.py-3.bg-gray-100
+                = search.search_rules['price_from']
+              %td.px-6.py-3.bg-gray-100
+                = search.search_rules['price_to']
+- else
+  %h3.text-center.my-5.text-2xl Search history is empty.
+.my-5.mx-auto.w-full.max-w-sm.md:max-w-xl.lg:max-w-2xl
+  .digg_pagination
+    %div
+      = will_paginate @searches, :container => false, :page_links => false, class: "pages"
