@@ -41,9 +41,9 @@
                 = statistic.requests_quantity
               %td.px-6.py-3.bg-green-100
                 = statistic.total_quantity
-    - else
-      %h3.text-center.my-5.text-2xl Statistics are empty.
-    .my-5.mx-auto.w-full.max-w-sm.md:max-w-xl.lg:max-w-2xl
-      .digg_pagination
-        %div
-          = will_paginate @statistics, :container => false, :page_links => false, class: "pages"
+- else
+  %h3.text-center.my-5.text-2xl Statistics are empty.
+.my-5.mx-auto.w-full.max-w-sm.md:max-w-xl.lg:max-w-2xl
+  .digg_pagination
+    %div
+      = will_paginate @statistics, :container => false, :page_links => false, class: "pages"
