@@ -8,16 +8,16 @@ class CarsController < ApplicationController
   def index
     @cars = Car.paginate(page: params[:page])
     if search_params
-      @cars = CarsManager::Searcher.new(cars: @cars, params: search_params).call
+      @cars = search_cars.cars
       save_history
       add_statistic
     end
 
-    @cars = CarsManager::Sorter.new(@cars, params['sort_by'] || 'created_at', params['sort_direction'] || 'desc').call
+    @cars = sort_cars.cars
   end
 
   def show
-    CarsManager::ViewsCounter.new(@car).call
+    Cars::ViewsCounter.call(car: @car)
   end
 
   def new
@@ -72,11 +72,23 @@ class CarsController < ApplicationController
     return unless user_signed_in?
     return if current_user.admin?
 
-    SearchHistory::Manager.new(params: search_params || {}, user: current_user[:id]).call
+    SearchHistory::SaveSearch.call(params: search_params, user: current_user.id)
   end
 
   def add_statistic
-    Statistics::Manager.new(total_quantity: @cars.count, params: search_params).call
+    Statistics::UpdateStatistics.call(params: search_params, total_quantity: @cars.count)
+  end
+
+  def search_cars
+    Cars::Searcher.call(cars: @cars, params: search_params)
+  end
+
+  def sort_cars
+    Cars::Sorter.call(
+      cars: @cars,
+      sort_by: params['sort_by'] || 'created_at',
+      sort_direction: params['sort_direction'] || 'desc'
+    )
   end
 
   helper_method :search_params
