@@ -1,4 +1,4 @@
-#Paganel cars
+# Paganel cars
 
 The web application with car advertisements. A user with "admin" status can add, edit or delete advertisements. The Admin can also view application statistics. Users can view a list of all cars, sort them by price or date of addition (asc or desc). Users can also find cars based on specified criteria. Users can register to view their search history.
 
