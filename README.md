@@ -3,12 +3,12 @@
 This is a web application for car advertisements, where users can view a list of all cars, sort them by price or date of addition (ascending or descending), and search for cars based on specified criteria. Users can also register to view their search history.
 
 ## Features
-View a list of all cars
-Sort cars by price or date of addition (ascending or descending)
-Search for cars based on specified criteria
-Register and view search history
-Admin users can add, edit, or delete advertisements
-Admin users can view application statistics
+- View a list of all cars
+- Sort cars by price or date of addition (ascending or descending)
+- Search for cars based on specified criteria
+- Register and view search history
+- Admin users can add, edit, or delete advertisements
+- Admin users can view application statistics
 
 ## Description
 Task is implemented on **Ruby 3.2.0**
