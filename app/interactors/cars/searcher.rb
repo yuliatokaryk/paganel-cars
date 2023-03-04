@@ -18,11 +18,11 @@ module Cars
     private
 
     def search_by_make
-      context.cars = context.cars.where(make: context.params[:make]) if context.params[:make]
+      context.cars = context.cars.where('make ILIKE ?', context.params[:make].downcase) if context.params[:make]
     end
 
     def search_by_model
-      context.cars = context.cars.where(model: context.params[:model]) if context.params[:model]
+      context.cars = context.cars.where('model ILIKE ?', context.params[:model]) if context.params[:model]
     end
 
     def search_by_year_from
