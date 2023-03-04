@@ -14,7 +14,7 @@ FactoryBot.define do
       make { 'BMW' }
       year { 2009 }
       price { 100_00 }
-      created_at { Time.new(2022, 12, 10) }
+      created_at { Time.zone.local(2022, 12, 10) }
     end
 
     trait :byd do
@@ -22,14 +22,14 @@ FactoryBot.define do
       model { 'Seal' }
       year { 2012 }
       price { 135_00 }
-      created_at { Time.new(2023, 1, 14) }
+      created_at { Time.zone.local(2023, 1, 14) }
     end
 
     trait :audi do
       make { 'Audi' }
       year { 2020 }
       price { 180_00 }
-      created_at { Time.new(2023, 2, 12) }
+      created_at { Time.zone.local(2023, 2, 12) }
     end
   end
 end
